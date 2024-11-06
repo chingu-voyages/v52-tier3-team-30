@@ -37,6 +37,7 @@ coding!
 - Stanley Thijssen: [GitHub](https://github.com/inovux)
 - Gerwyn: [GitHub](https://github.com/Gerwyn1)
 - Raja: [Github](https://github.com/jeisaRaja)
+- Patrick Macabulos [Github](https://github.com/psmacabulos) / [LinkedIn](https://www.linkedin.com/in/patrick-macabulos-developer)
 
    ...
 - Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
