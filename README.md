@@ -38,6 +38,4 @@ coding!
 - Gerwyn: [GitHub](https://github.com/Gerwyn1)
 - Raja: [Github](https://github.com/jeisaRaja)
 - Patrick Macabulos [Github](https://github.com/psmacabulos) / [LinkedIn](https://www.linkedin.com/in/patrick-macabulos-developer)
-
-   ...
-- Teammate name #n: [GitHub](https://github.com/ghaccountname) / [LinkedIn](https://linkedin.com/in/liaccountname)
+- HL: [GitHub](https://github.com/hua-lun) / [LinkedIn](https://linkedin.com/in/chuahualun)
