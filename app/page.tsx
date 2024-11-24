@@ -1,7 +1,7 @@
 export default function Home() {
   return (
-    <main className="flex items-center justify-center text-red-800 h-screen text-9xl">
+    <main className="flex h-screen items-center justify-center text-9xl text-red-800">
       <h1>Our Solar App</h1>
     </main>
-  )
+  );
 }
