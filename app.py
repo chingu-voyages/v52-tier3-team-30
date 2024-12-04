@@ -75,6 +75,15 @@ def form():
             return render_template('form.html', msg='Form submitted successfully')
     return render_template('form.html')
 
+@app.route('/status/<requestId>', methods=('GET', 'POST'))
+def status(requestId):
+    info = database.get_status(db, requestId)
+    if info is None:
+        return render_template('status.html', msg='Request ID {} not found'.format(requestId))
+
+    return render_template('status.html', msg='Request ID {} found'.format(requestId), info=info)
+
+
 @app.route('/login')
 def login():
     if 'user' in session:
