@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <main>
+
+      <h1>Dashboard (Protected Page)</h1>
+
+      <p>This is a protected page that requires authenication to view.</p>
+
+      <p>Use this template to create and customize more protected pages for your app.</p>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/login-auth.js') }}" type="module"></script>
+
+{% endblock %}
