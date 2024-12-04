@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container center">
+      <h2>
+        Status Page
+      </h2>
+      <div class="card">
+        <div class="card-body">
+          <h3>
+            {{ msg }}
+          </h3>
+
+          <p>
+            {% if info %}
+            Your request is currently: <b>{{ info.status }}</b>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+{% endblock %}
