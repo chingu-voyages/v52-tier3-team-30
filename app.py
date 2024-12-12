@@ -71,17 +71,17 @@ def form():
             address = request.form.get('inputAddress')
             timeslot = request.form.get('inputTime')
             preferred_date = request.form.get('inputDate')
-            database.create_resident(db, name, email, phone, address, timeslot, preferred_date)
-            return render_template('form.html', msg='Form submitted successfully')
+            resident_ref = database.create_resident(db, name, email, phone, address, timeslot, preferred_date)
+            return render_template('form.html', msg='Form submitted successfully', requestId=resident_ref)
     return render_template('form.html')
 
 @app.route('/status/<requestId>', methods=('GET', 'POST'))
 def status(requestId):
     info = database.get_status(db, requestId)
     if info is None:
-        return render_template('status.html', msg='Request ID {} not found'.format(requestId))
+        return render_template('status.html', msg='Request ID: {} not found'.format(requestId))
 
-    return render_template('status.html', msg='Request ID {} found'.format(requestId), info=info)
+    return render_template('status.html', msg='Request ID: {} found'.format(requestId), info=info)
 
 
 @app.route('/login')
@@ -99,10 +99,17 @@ def logout():
     return response
 
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=('GET', 'POST'))
 @auth_required
 def dashboard():
-    return render_template('dashboard.html')
+    data = database.get_all_requests(db)
+
+    if request.method == 'POST':
+        if 'mark-visited-submit' in request.form:
+            requestId = request.form.get('mark-visited-submit')
+            database.update_status(db, requestId, 'Visited')
+
+    return render_template('dashboard.html', data=data)
 
 
 if __name__ == '__main__':
