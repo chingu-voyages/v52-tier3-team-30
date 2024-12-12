@@ -32,10 +32,18 @@
           <label for="inputDate" class="form-label">Preferred Date</label>
           <input type="date" id="inputDate" min="2024-12-04" required name="inputDate"/>
         </div>
+        <div class="mb-3">
+          <p>
+            Your preferred timeslot is only indicative and you will receive confirmation a few hours before the scheduled visit.
+          </p>
+        </div>
         <button type="submit" name="request-form-submit" class="btn btn-primary">Submit</button>
         <div class="mb-3">
+          <br>
           {% if msg %}
-            {{ msg }}
+            <p>{{ msg }}</p>
+            <br>
+            <p>Please visit <a href="/status/{{ requestId }}">this link</a> to view the status of your request.</p>
           {% endif %}
         </div>
       </form>
