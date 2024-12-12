@@ -26,6 +26,16 @@ def get_status(db, requestId):
     return None
 
 
+def update_status(db, requestId, status):
+    doc_ref = db.collection("residents").document(requestId)
+    doc_ref.update({"status": status})
+
+
+def get_all_requests(db):
+    docs = db.collection("residents").stream()
+    return docs
+
+
 def create_resident(db, name, email, phone, address, timeslot, preferred_date):
 
     timestamp = convert_timestamp(timeslot, preferred_date)
@@ -38,9 +48,11 @@ def create_resident(db, name, email, phone, address, timeslot, preferred_date):
         'phone': phone,
         'address': geopoint,
         'timeslot': timestamp,
+        'status': 'Submitted',
     })
 
-    print('Resident created')
+    return resident_ref.id
+
 
 
 
