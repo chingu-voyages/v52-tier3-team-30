@@ -13,7 +13,12 @@
 
           <p>
             {% if info %}
-            Your request is currently: <b>{{ info.status }}</b>
+              Your request is currently: <b>{{ info.status }}</b>
+              {% if info.status != 'Visited' and info.status != 'Cancelled' %}
+              <form method="post">
+                  <button type="submit" name="cancellation-submit" class="btn btn-primary">Cancel Request</button>
+              </form>
+              {% endif %}
             {% endif %}
           </p>
         </div>
