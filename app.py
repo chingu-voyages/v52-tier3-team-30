@@ -13,6 +13,8 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY')
 
+GEOAPIFY_KEY = os.getenv('GEOAPIFY_KEY')
+
 # Configure session cookie settings
 app.config['SESSION_COOKIE_SECURE'] = True  # Ensure cookies are sent over HTTPS
 app.config['SESSION_COOKIE_HTTPONLY'] = True  # Prevent JavaScript access to cookies
@@ -59,6 +61,7 @@ def authorize():
 def main():
     return render_template('index.html')
 
+
 @app.route('/form', methods=('GET', 'POST'))
 def form():
     if request.method == 'GET':
@@ -75,11 +78,19 @@ def form():
             return render_template('form.html', msg='Form submitted successfully', requestId=resident_ref)
     return render_template('form.html')
 
+
 @app.route('/status/<requestId>', methods=('GET', 'POST'))
 def status(requestId):
+    if requestId is None:
+        return render_template('status.html')
     info = database.get_status(db, requestId)
     if info is None:
         return render_template('status.html', msg='Request ID: {} not found'.format(requestId))
+
+    if request.method == 'POST':
+        if 'cancellation-submit' in request.form:
+            database.update_status(db, requestId, 'Cancelled')
+            return redirect(url_for('status', requestId=requestId))
 
     return render_template('status.html', msg='Request ID: {} found'.format(requestId), info=info)
 
@@ -91,12 +102,19 @@ def login():
     else:
         return render_template('login.html')
 
+
 @app.route('/logout')
 def logout():
     session.pop('user', None)  # Remove the user from session
     response = make_response(redirect(url_for('login')))
     response.set_cookie('session', '', expires=0)  # Optionally clear the session cookie
     return response
+
+
+@app.route('/api')
+def api():
+    print(GEOAPIFY_KEY)
+    return { "API": GEOAPIFY_KEY }
 
 
 @app.route('/dashboard', methods=('GET', 'POST'))
