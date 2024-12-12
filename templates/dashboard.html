@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container">
+
+      <h1>Dashboard (Admin Only)</h1>
+
+      <p>This is a protected page that requires authenication to view.</p>
+
+        <div>
+            <table id="myTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>Timeslot</th>
+                        <th>Status</th>
+                        <th>Mark As Visited</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in data %}
+                    {% set item = d.to_dict() %}
+                    <tr>
+                        <td>{{ item['name'] }}</td>
+                        <td>{{ item['email'] }}</td>
+                        <td>{{ item['phone'] }}</td>
+                        <td>{{ item['address'] }}</td>
+                        <td>{{ item['timeslot'] }}</td>
+                        <td>{{ item['status'] }}</td>
+                        <td>
+                            {% if item['status'] == 'Submitted' %}
+                                <form method="post">
+                                    <button type="submit" name="mark-visited-submit" class="btn btn-primary" value="{{ d.id }}">Mark As Visited</button>
+                                </form>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/login-auth.js') }}" type="module"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}" type="module"></script>
+{% endblock %}

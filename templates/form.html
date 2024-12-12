@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.9/dist/css/autoComplete.min.css">
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container center">
+    <h2>
+      Request Form
+    </h2>
+    <div class="card">
+      <form class="card-body" method="post">
+        <div class="mb-3">
+          <label for="inputName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="inputName" required name="inputName">
+        </div>
+        <div class="mb-3">
+          <label for="inputEmail" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="inputEmail" required name="inputEmail" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="inputPhone" class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" id="inputPhone" required name="inputPhone">
+        </div>
+        <div class="mb-3">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="inputAddress" required name="inputAddress">
+        </div>
+        <div class="mb-3">
+          <label for="inputTime" class="form-label">Preferred Timeslot</label>
+          <input type="time" id="inputTime" min="09:00" max="18:00" required name="inputTime"/>
+        </div>
+        <div class="mb-3">
+          <label for="inputDate" class="form-label">Preferred Date</label>
+          <input type="date" id="inputDate" min="2024-12-04" required name="inputDate"/>
+        </div>
+        <div class="mb-3">
+          <p>
+            Your preferred timeslot is only indicative and you will receive confirmation a few hours before the scheduled visit.
+          </p>
+        </div>
+        <button type="submit" name="request-form-submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3">
+          <br>
+          {% if msg %}
+            <p>{{ msg }}</p>
+            <br>
+            <p>Please visit <a href="/status/{{ requestId }}">this link</a> to view the status of your request.</p>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+
+
+  </div>
+{% endblock %}
