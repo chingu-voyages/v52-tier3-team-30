@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.9/dist/css/autoComplete.min.css">
+<script src="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/dist/index.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/styles/minimal.css">
 {% extends 'base.html' %}
 
 {% block content %}
@@ -22,6 +23,7 @@
         </div>
         <div class="mb-3">
           <label for="inputAddress" class="form-label">Address</label>
+          <div id="autocomplete" class="autocomplete-container"></div>
           <input type="text" class="form-control" id="inputAddress" required name="inputAddress">
         </div>
         <div class="mb-3">
@@ -51,4 +53,7 @@
 
 
   </div>
+
+  <script src="{{ url_for('static', filename='js/autocomplete.js') }}" type="module"></script>
+
 {% endblock %}
