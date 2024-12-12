@@ -1,6 +1,17 @@
 h2 {
     font-family: monospace;
     font-weight: bold;
+    text-decoration: underline;
+}
+
+h3 {
+    font-family: monospace;
+    font-weight: bold;
+    color: midnightblue;
+}
+
+p {
+    font-family: monospace;
 }
 
 a {
@@ -59,6 +70,10 @@ button.gh {
 
 .error-msg {
     display: none;
+}
+
+.autocomplete-container {
+    position: relative;
 }
 
 .gsi-material-button {
