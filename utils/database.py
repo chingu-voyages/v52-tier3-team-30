@@ -49,9 +49,11 @@ def get_optimised_route(data):
     #auth = session.post('https://' + 'api.routexl.com/tour/')
     response = session.post(ROUTEXL_URL, data=input_data)
 
-    res_json = json.loads(response.content)
+    if response.status_code == 200:
+        res_json = json.loads(response.content)
+        return res_json['route']
 
-    return res_json['route']
+    return None
 
 
 def get_geopoint(address):
@@ -132,7 +134,8 @@ def create_today_listings(db):
         data = get_dict(docs)
         route = get_optimised_route(data)
         print(route)
-        get_order(route, data, db)
+        if route:
+            get_order(route, data, db)
 
 
 def get_output(docs):
