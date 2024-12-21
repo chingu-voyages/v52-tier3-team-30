@@ -1,3 +1,8 @@
+h1 {
+    font-family: monospace;
+    font-weight: bold;
+}
+
 h2 {
     font-family: monospace;
     font-weight: bold;
@@ -62,6 +67,16 @@ button.gh {
     color: #fafbfc;
 }
 
+a.footer-gh {
+  clear:both;
+  padding:10px 5px;
+}
+
+i.footer-gh {
+  font-size:48px;
+  color:#1c2833;
+}
+
 .center {
   margin: auto;
   width: 50%;
@@ -75,6 +90,42 @@ button.gh {
 .autocomplete-container {
     position: relative;
 }
+
+#today-table-view {
+  padding-top: 1%;
+  background-color: #f2f2f2;
+}
+
+#all-table-view {
+  padding-top: 1%;
+  background-color: #f2f2f2;
+}
+
+#list-btn {
+  background-color: #ce8899;
+  border-color: #ce8899;
+  font-family: monospace;
+}
+
+#map-btn {
+  background-color: #9a88ce;
+  border-color: #9a88ce;
+  font-family: monospace;
+}
+
+#all-list-btn {
+  background-color: #f1ad47;
+  border-color: #f1ad47;
+  font-family: monospace;
+}
+
+#today-list-btn {
+  background-color: #ec5e94;
+  border-color: #ec5e94;
+  font-family: monospace;
+}
+
+#map-view { height: 360px; }
 
 .gsi-material-button {
   -moz-user-select: none;

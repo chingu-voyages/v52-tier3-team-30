@@ -113,7 +113,6 @@ def logout():
 
 @app.route('/api')
 def api():
-    print(GEOAPIFY_KEY)
     return { "API": GEOAPIFY_KEY }
 
 
@@ -121,13 +120,14 @@ def api():
 @auth_required
 def dashboard():
     data = database.get_all_requests(db)
+    today_data = database.get_today_listings(db)
 
     if request.method == 'POST':
         if 'mark-visited-submit' in request.form:
             requestId = request.form.get('mark-visited-submit')
             database.update_status(db, requestId, 'Visited')
 
-    return render_template('dashboard.html', data=data)
+    return render_template('dashboard.html', data=data, today_data=today_data)
 
 
 if __name__ == '__main__':

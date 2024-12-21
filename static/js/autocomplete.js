@@ -1,4 +1,4 @@
-URL = "http://127.0.0.1:5000/api"
+URL = "https://hlpractice.pythonanywhere.com/api"
 
 var API_KEY;
 await fetch(URL)
