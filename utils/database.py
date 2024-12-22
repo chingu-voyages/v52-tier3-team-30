@@ -4,6 +4,7 @@ import requests
 
 from geopy.geocoders import Nominatim
 
+from .send_email import send_confirmation_email
 import os
 
 
@@ -61,6 +62,11 @@ def get_geopoint(address):
     return [location.latitude, location.longitude]
 
 
+def get_address(points):
+    location = geolocator.reverse(f"{points[0]}, {points[1]}")
+    return location.address
+
+
 def convert_timestamp(timeslot, preferred_date):
     datetime_str = preferred_date + ' ' + timeslot
     datetime_obj = datetime.datetime.strptime(datetime_str, '%Y-%m-%d %H:%M')
@@ -100,7 +106,7 @@ def update_status(db, requestId, status):
 
 def get_all_requests(db):
     docs = db.collection("residents").stream()
-    return docs
+    return get_output(docs)
 
 
 def calculate_time(today, duration):
@@ -116,12 +122,14 @@ def get_order(route, data, db):
     today = datetime.datetime(today_date.year, today_date.month, today_date.day, hour=8, minute=0, second=0, microsecond=0, tzinfo=sgtTZObject)
     t1 = today.astimezone(datetime.timezone(sgtTimeDelta))
     arrival = 0
+    position = 0
     for key, obj in route.items():
         t1 = calculate_time(t1, obj['arrival'] - arrival)
         arrival = obj['arrival']
         curr = data[obj['name']]
         resident_id = curr['id']
-        update_request(db, resident_id, key, "Scheduled", t1)
+        update_request(db, resident_id, position, "Scheduled", t1)
+        position += 1
 
 
 def create_today_listings(db):
@@ -142,6 +150,7 @@ def get_output(docs):
     output = {}
     for doc in docs:
         d = doc.to_dict()
+        d['address'] = get_address(d['address'])
         output[doc.id] = d
 
     return output
@@ -155,7 +164,7 @@ def get_today_listings(db):
     if not doc.exists:
         doc_ref.set({"isCreated": False}, merge=True)
 
-    d = doc.to_dict()
+    d = doc_ref.get().to_dict()
     if not d['isCreated']:
         create_today_listings(db)
         doc_ref.set({"isCreated": True}, merge=True)
@@ -182,6 +191,8 @@ def create_resident(db, name, email, phone, address, timeslot, preferred_date):
         'status': 'Submitted',
         'queue': 0
     })
+
+    send_confirmation_email(email, name, resident_ref.id)
 
     return resident_ref.id
 
