@@ -86,8 +86,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for d in data %}
-                    {% set item = d.to_dict() %}
+                    {% for key, item in data.items() %}
                     <tr>
                         <td>{{ item['name'] }}</td>
                         <td>{{ item['email'] }}</td>
@@ -98,7 +97,7 @@
                         <td>
                             {% if item['status'] == 'Scheduled' and item['status'] != 'Visited' %}
                                 <form method="post">
-                                    <button type="submit" name="mark-visited-submit" class="btn btn-primary" value="{{ d.id }}">Mark As Visited</button>
+                                    <button type="submit" name="mark-visited-submit" class="btn btn-primary" value="{{ key }}">Mark As Visited</button>
                                 </form>
                             {% endif %}
                         </td>

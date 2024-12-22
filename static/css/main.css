@@ -102,26 +102,30 @@ i.footer-gh {
 }
 
 #list-btn {
+  border-width: thick;
   background-color: #ce8899;
-  border-color: #ce8899;
+  border-color: #be8a3b;
   font-family: monospace;
 }
 
 #map-btn {
+  border-width: thick;
   background-color: #9a88ce;
   border-color: #9a88ce;
   font-family: monospace;
 }
 
 #all-list-btn {
+  border-width: thick;
   background-color: #f1ad47;
   border-color: #f1ad47;
   font-family: monospace;
 }
 
 #today-list-btn {
+  border-width: thick;
   background-color: #ec5e94;
-  border-color: #ec5e94;
+  border-color: #8e5f6a;
   font-family: monospace;
 }
 
