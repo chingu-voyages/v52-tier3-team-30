@@ -12,6 +12,7 @@ Link to Web App: https://hlpractice.pythonanywhere.com/
 
 ## Overview
 
+![homepage.png](assets/homepage.png)
 `HL Solar` is a web application for requesting solar panel evaluations with admin dashboard interface.
 
 ## Specifications
@@ -24,7 +25,7 @@ Link to Web App: https://hlpractice.pythonanywhere.com/
   - View request status or Cancel Appointment
 - Confirmation Timeslot
   - Email sent with timeslot information to residents, at around midnight of the day of appointment 
-  - Python script with `pythonanywhere` scheduled task to automate email sending process [Coming soon]
+  - Python script with `pythonanywhere` scheduled task to automate email sending process
   
 ### Admins
 - `/login`
@@ -120,6 +121,7 @@ python app.py
 - Geoapify Autocomplete
 - leaflet.js
 - [Leaflet Browser Print](https://github.com/Igor-Vladyka/leaflet.browser.print)
+- [Mock Email Sending with SMTP Bucket](https://www.smtpbucket.com/emails?sender=admin@hlsolar.email)
 
 ## Our Team
 
