@@ -119,7 +119,7 @@
             }).addTo(map);
         function addMarkers(today_data) {
             for (const key in today_data) {
-                const points = today_data[key]['address']
+                const points = today_data[key]['points']
                 var marker = L.marker([points[0], points[1]]).addTo(map);
                 marker.bindPopup("<b>Queue</b><br>" + today_data[key]['queue']).openPopup();
             }

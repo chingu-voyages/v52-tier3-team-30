@@ -1,3 +1,5 @@
+import os
+
 import smtplib
 import ssl
 from email.mime.multipart import MIMEMultipart
@@ -8,8 +10,11 @@ from firebase_admin import credentials, firestore
 
 from utils.database import get_today_listings
 
+script_directory = os.path.dirname(os.path.abspath(__file__))
+data_file = os.path.join(script_directory, "firebase-auth.json")
+
 # Firebase Admin SDK setup
-cred = credentials.Certificate("firebase-auth.json")
+cred = credentials.Certificate(data_file)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 

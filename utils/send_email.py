@@ -10,7 +10,7 @@ STATUS_URL = "https://hlpractice.pythonanywhere.com/status/"
 def send_confirmation_email(receiver_email, name, id):
 
     message = MIMEMultipart("alternative")
-    message["Subject"] = "multipart test"
+    message["Subject"] = f"[{id}] Solar Panel Request Received"
     message["From"] = sender_email
     message["To"] = receiver_email
 

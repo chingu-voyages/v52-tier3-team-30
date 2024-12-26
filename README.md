@@ -4,11 +4,15 @@ Link to Web App: https://hlpractice.pythonanywhere.com/
 
 ## Table of Contents
 
+* [Video Demo](#video-demo)
 * [Overview](#overview)
 * [Specifications](#specifications)
 * [Setup Instructions & Requirements](#setup-intructions--requirements)
 * [APIs & Resources](#apis--resources)
 * [Our Team](#our-team)
+
+## Video Demo
+[![HL Solar video demo on YouTube](https://img.youtube.com/vi/QwDmU6tavRg/0.jpg)](https://www.youtube.com/watch?v=QwDmU6tavRg)
 
 ## Overview
 
@@ -130,7 +134,6 @@ Everyone on your team should add their name along with a link to their GitHub
 your repo access and to practice PR'ing with your team *before* you start
 coding!
 
-- Gerwyn: [GitHub](https://github.com/Gerwyn1)
 - HL: [GitHub](https://github.com/hua-lun)
   - Fullstack Development
   - Database Management
