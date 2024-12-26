@@ -150,6 +150,7 @@ def get_output(docs):
     output = {}
     for doc in docs:
         d = doc.to_dict()
+        d['points'] = d['address']
         d['address'] = get_address(d['address'])
         output[doc.id] = d
 
@@ -191,10 +192,11 @@ def create_resident(db, name, email, phone, address, timeslot, preferred_date):
         'status': 'Submitted',
         'queue': 0
     })
-
-    send_confirmation_email(email, name, resident_ref.id)
-
-    return resident_ref.id
+    try:
+        send_confirmation_email(email, name, resident_ref.id)
+        return resident_ref.id
+    except ConnectionRefusedError:
+        return resident_ref.id
 
 
 
